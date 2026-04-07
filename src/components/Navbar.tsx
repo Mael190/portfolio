@@ -20,7 +20,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[padding,background-color,backdrop-filter,box-shadow,border-color] duration-500 border border-transparent shadow-none outline-none ${
         scrolled
           ? "glass shadow-lg shadow-slate-200/50 py-3"
           : "bg-transparent py-5"
@@ -36,15 +36,23 @@ export function Navbar() {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary-500 after:transition-all hover:after:w-full"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks
+            .filter((link) => link.label !== "Contact")
+            .map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary-500 after:transition-all hover:after:w-full"
+              >
+                {link.label}
+              </a>
+            ))}
+          <a
+            href="#contact"
+            className="px-5 py-2.5 bg-primary-600 text-white rounded-full text-sm font-semibold hover:bg-primary-700 transition-all shadow-md shadow-primary-200 hover:scale-105 active:scale-95"
+          >
+            Contact
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -66,7 +74,11 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-base font-medium text-slate-700 hover:text-primary-600 transition-colors py-2"
+                className={`text-base font-medium transition-colors py-2 px-4 rounded-xl ${
+                  link.label === "Contact"
+                    ? "bg-primary-600 text-white text-center mt-2 shadow-lg shadow-primary-100"
+                    : "text-slate-700 hover:text-primary-600"
+                }`}
               >
                 {link.label}
               </a>
