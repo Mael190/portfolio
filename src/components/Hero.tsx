@@ -25,10 +25,10 @@ export function Hero() {
               </div>
             </div>
 
-            <h1 className="animate-fade-up stagger-1 text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
+            <h1 className="animate-fade-up stagger-1 text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
               Développeur
               <br />
-              <span className="gradient-text">Fullstack</span>
+              <span className="gradient-text">Fullstack Next</span>
             </h1>
 
             <p className="animate-fade-up stagger-2 mt-6 text-lg md:text-xl text-slate-600 leading-relaxed max-w-lg">
