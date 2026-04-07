@@ -32,8 +32,8 @@ export function Hero() {
             </h1>
 
             <p className="animate-fade-up stagger-2 mt-6 text-lg md:text-xl text-slate-600 leading-relaxed max-w-lg">
-              Associé technique freelance — je ne suis pas juste un exécutant.
-              Je m'implique sur la vision produit et je m'investis à 100% sur le
+              Associé technique freelance, je ne suis pas juste un exécutant. Je
+              m'implique sur la vision produit et je m'investis à 100% sur le
               long terme.
             </p>
 

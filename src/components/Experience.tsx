@@ -17,27 +17,6 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    id: 'orisha',
-    role: 'Développeur Fullstack',
-    company: 'Orisha',
-    period: 'Sept. 2022 — Sept. 2025',
-    type: 'fulltime',
-    description:
-      'Développement et maintien en production de dizaines d\'applications SaaS pour le commerce.',
-    highlights: [
-      'Frontend Next.js / React — intégration maquettes, développement de features, corrections de bugs',
-      'Pipeline CI/CD avec security by design',
-      'Tests unitaires et E2E (Jest, Playwright)',
-      'Monitoring et observabilité des applications en production',
-      'Formation et utilisation de l\'IA pour coder',
-      'Gestion de bases de données : PostgreSQL, MongoDB, Redis',
-      'Architecture big data : Kafka, datalake, agrégations et reporting',
-      'Force de proposition : clean code, revues de code, ADR',
-    ],
-    techStack: ['Next.js', 'React', 'TypeScript', 'PostgreSQL', 'MongoDB', 'Redis', 'Kafka', 'Jest', 'Playwright', 'CI/CD'],
-    image: orishaLogo,
-  },
-  {
     id: 'medilib',
     role: 'Cofondateur & Lead Dev',
     company: 'Medilib',
@@ -57,6 +36,27 @@ const experiences: Experience[] = [
     ],
     techStack: ['Next.js', 'React', 'Node.js', 'PostgreSQL', 'GCP', 'Kubernetes', 'Docker', 'Helm', 'WhatsApp API'],
     image: medilibLogo,
+  },
+  {
+    id: 'orisha',
+    role: 'Développeur Fullstack',
+    company: 'Orisha',
+    period: 'Sept. 2022 — Sept. 2025',
+    type: 'fulltime',
+    description:
+      'Développement et maintien en production de dizaines d\'applications SaaS pour le commerce.',
+    highlights: [
+      'Frontend Next.js / React — intégration maquettes, développement de features, corrections de bugs',
+      'Pipeline CI/CD avec security by design',
+      'Tests unitaires et E2E (Jest, Playwright)',
+      'Monitoring et observabilité des applications en production',
+      'Formation et utilisation de l\'IA pour coder',
+      'Gestion de bases de données : PostgreSQL, MongoDB, Redis',
+      'Architecture big data : Kafka, datalake, agrégations et reporting',
+      'Force de proposition : clean code, revues de code, ADR',
+    ],
+    techStack: ['Next.js', 'React', 'TypeScript', 'PostgreSQL', 'MongoDB', 'Redis', 'Kafka', 'Jest', 'Playwright', 'CI/CD'],
+    image: orishaLogo,
   },
   {
     id: 'docube',
@@ -142,26 +142,57 @@ export function Experience() {
 
                   <p className="text-slate-600 mb-5 leading-relaxed">{exp.description}</p>
 
-                  {/* Image placeholder */}
-                  <div className="mb-5 rounded-xl overflow-hidden border border-slate-100 bg-white p-8 flex items-center justify-center">
-                    <img
-                      src={exp.image}
-                      alt={`${exp.company} — ${exp.role}`}
-                      className="max-w-full h-32 object-contain"
-                      onError={(e) => {
-                        const target = e.currentTarget;
-                        target.style.display = 'none';
-                        const placeholder = target.parentElement!;
-                        placeholder.classList.add('flex', 'items-center', 'justify-center', 'h-48');
-                        const inner = document.createElement('div');
-                        inner.className = 'text-center';
-                        inner.innerHTML = `
-                          <div class="text-slate-300 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
-                          <p class="text-sm text-slate-400">Image à ajouter</p>
-                        `;
-                        placeholder.appendChild(inner);
-                      }}
-                    />
+                  {/* Image container */}
+                  <div className={`mb-5 rounded-xl overflow-hidden border border-slate-100 bg-white flex items-center justify-center ${
+                    ['medilib', 'docube'].includes(exp.id) ? 'p-4' : 'p-8'
+                  }`}>
+                    {['medilib', 'docube'].includes(exp.id) ? (
+                      <a 
+                        href={exp.image} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="cursor-zoom-in w-full flex justify-center hover:opacity-90 transition-opacity"
+                        title="Voir l'image en grand"
+                      >
+                        <img
+                          src={exp.image}
+                          alt={`${exp.company} — ${exp.role}`}
+                          className="max-w-full h-48 md:h-64 object-contain"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            target.style.display = 'none';
+                            const placeholder = target.parentElement!.parentElement!; // Adjust for anchor tag
+                            placeholder.classList.add('flex', 'items-center', 'justify-center', 'h-48');
+                            const inner = document.createElement('div');
+                            inner.className = 'text-center';
+                            inner.innerHTML = `
+                              <div class="text-slate-300 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                              <p class="text-sm text-slate-400">Image à ajouter</p>
+                            `;
+                            placeholder.appendChild(inner);
+                          }}
+                        />
+                      </a>
+                    ) : (
+                      <img
+                        src={exp.image}
+                        alt={`${exp.company} — ${exp.role}`}
+                        className="max-w-full h-32 object-contain"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = 'none';
+                          const placeholder = target.parentElement!;
+                          placeholder.classList.add('flex', 'items-center', 'justify-center', 'h-48');
+                          const inner = document.createElement('div');
+                          inner.className = 'text-center';
+                          inner.innerHTML = `
+                            <div class="text-slate-300 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+                            <p class="text-sm text-slate-400">Image à ajouter</p>
+                          `;
+                          placeholder.appendChild(inner);
+                        }}
+                      />
+                    )}
                   </div>
 
                   {/* Highlights */}
