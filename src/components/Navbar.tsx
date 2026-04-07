@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: '#about', label: 'À propos' },
-  { href: '#experience', label: 'Expérience' },
-  { href: '#skills', label: 'Compétences' },
-  { href: '#contact', label: 'Contact' },
+  { href: "#about", label: "À propos" },
+  { href: "#experience", label: "Expérience" },
+  { href: "#skills", label: "Compétences" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -14,16 +14,16 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'glass shadow-lg shadow-slate-200/50 py-3'
-          : 'bg-transparent py-5'
+          ? "glass shadow-lg shadow-slate-200/50 py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
@@ -45,12 +45,6 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="mailto:contact@mael.dev"
-            className="text-sm font-medium px-5 py-2.5 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all hover:shadow-lg hover:shadow-primary-200 active:scale-95"
-          >
-            Me contacter
-          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -77,12 +71,6 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="mailto:contact@mael.dev"
-              className="text-center text-sm font-medium px-5 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all mt-2"
-            >
-              Me contacter
-            </a>
           </div>
         </div>
       )}
